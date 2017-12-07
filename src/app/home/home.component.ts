@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   languages = ['English', 'Spanish', 'Other'];
 
-  readonly model = new Employee('Darla', 'Smith');
+  readonly model = new Employee('Darla', 'Smith', true, 'w2', 'English');
 
   firstNameToUpperCase(value: string) {
     if (value.length > 0) {

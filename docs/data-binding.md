@@ -1,12 +1,10 @@
 # Data binding
 
-## input
-
 component:
 
 ```ts
 export class HomeComponent implements OnInit {
-  readonly model = new Employee('Darla', 'Smith');
+  readonly model = new Employee('Darla', 'Smith', true, 'w2', 'English');
 
   firstNameToUpperCase(value: string) {
     if (value.length > 0) {
@@ -17,6 +15,8 @@ export class HomeComponent implements OnInit {
   }
 }
 ```
+
+## input
 
 ### No binding
 
@@ -44,4 +44,28 @@ Below is used if UI value is a little different from model. e.g, Capitalize firs
 
 ```html
 <input type="text" class="form-control" required name="firstName" [ngModel]="model.firstName" (ngModelChange)="firstNameToUpperCase($event)">
+```
+
+## Checkbox
+
+```html
+<input type="checkbox" name="isFullTime" [(ngModel)]="model.isFullTime"> Full Time Employee
+```
+
+## Radio button
+
+```html
+<input type="radio" name="paymentType" value="w2" checked [(ngModel)]="model.paymentType"> W2
+
+<input type="radio" name="paymentType" value="1099" [(ngModel)]="model.paymentType"> 1099
+```
+
+## Select
+
+```html
+<select class="form-control" name="primaryLanguage" [(ngModel)]="model.primaryLanguage">
+  <option *ngFor="let lang of languages">
+    {{ lang }}
+  </option>
+</select>
 ```
