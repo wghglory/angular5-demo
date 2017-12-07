@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  name: string; // [(ngModel)] needs it
   constructor() {}
+
+  name: string; // [(ngModel)] needs it
+
+  languages = ['English', 'Spanish', 'Other'];
 
   ngOnInit() {}
 }
