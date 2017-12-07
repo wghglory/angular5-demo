@@ -12,6 +12,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 1. [form basics](./docs/form.md)
 1. [use bootstrap](./docs/bootstrap.md)
+1. [data binding](./docs/data-binding.md)
+1. [form validation](./docs/validation.md)
 
 ## Development server
 

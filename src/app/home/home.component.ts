@@ -10,11 +10,15 @@ import { Employee } from './../models/employ';
 export class HomeComponent implements OnInit {
   constructor() {}
 
-  name: string; // [(ngModel)] needs it
-
   languages = ['English', 'Spanish', 'Other'];
 
-  readonly model = new Employee('Darla', 'Smith', true, 'w2', 'English');
+  model = new Employee('', '', false, '', 'default');
+  hasPrimaryLanguageError = false;
+
+  validatePrimaryLanguage(value) {
+    if (value === 'default') this.hasPrimaryLanguageError = true;
+    else this.hasPrimaryLanguageError = false;
+  }
 
   firstNameToUpperCase(value: string) {
     if (value.length > 0) {
