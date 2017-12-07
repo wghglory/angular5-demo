@@ -1,9 +1,9 @@
-# Angular5Demo
+# Angular 5 Form
 
 Use below command to create the project.
 
 ```bash
-ng new angular5-demo --routing --style scss
+ng new angular5-form --routing --style scss
 ```
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
