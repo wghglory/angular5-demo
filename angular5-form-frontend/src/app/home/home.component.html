@@ -1,6 +1,6 @@
 <h3 *ngIf="languages.length === 0">Loading...</h3>
 <!-- async pipe is another option to handle request loading -->
-<div class="container" *ngIf="languages.length > 0">
+<div *ngIf="languages.length > 0">
   <h3>Angular 5 Forms</h3>
   <form #employeeForm="ngForm" novalidate (ngSubmit)="submitForm(employeeForm)">
 

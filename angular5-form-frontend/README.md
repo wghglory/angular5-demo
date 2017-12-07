@@ -15,6 +15,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 1. [data binding](./docs/data-binding.md)
 1. [form validation](./docs/validation.md)
 1. [service](./docs/service.md)
+1. [3rd party control by ngx-bootstrap](./docs/ngx-bootstrap.md)
 
 ## Development server
 

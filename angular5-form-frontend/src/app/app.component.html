@@ -1,3 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
 
-<router-outlet></router-outlet>
+<div class="container">
+
+  <ul class="nav nav-pills">
+    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a></li>
+    <li><a routerLink="/control" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">3rd Party Control</a></li>
+  </ul>
+
+  <router-outlet></router-outlet>
+
+</div>
