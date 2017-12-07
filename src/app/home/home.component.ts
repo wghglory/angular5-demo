@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { Employee } from './../models/employ';
 
@@ -26,6 +27,12 @@ export class HomeComponent implements OnInit {
     } else {
       this.model.firstName = value;
     }
+  }
+
+  save(employeeForm: NgForm) {
+    //post request
+    console.log(employeeForm);
+    console.log('saved: ' + JSON.stringify(employeeForm.value));
   }
 
   ngOnInit() {}

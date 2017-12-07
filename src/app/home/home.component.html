@@ -1,23 +1,24 @@
 <div class="container">
   <h3>Angular 5 Forms</h3>
-  <form #form="ngForm" novalidate>
+  <form #employeeForm="ngForm" novalidate (ngSubmit)="save(employeeForm)">
 
     <!-- <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched"> -->
-    <div class="form-group" [ngClass]="{'has-error': firstName.invalid && firstName.touched}">
+    <div class="form-group" [ngClass]="{'has-error': firstName.invalid && (firstName.touched || firstName.dirty)}">
       <label class="control-label">First Name</label>
-      <input #firstName="ngModel" pattern="...+" required type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName">
-      <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger">
-        First Name is required, and must be at least 3 characters.
+      <input #firstName="ngModel" pattern="...+"  required type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName">
+      <div *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)" class="alert alert-danger">
+        <span *ngIf="firstName.errors.required">First Name is required</span>
+        <span *ngIf="firstName.errors.pattern">and must be at least 3 characters.</span>
       </div>
     </div>
 
     <!-- <div class="form-group"> -->
-      <!-- <label>First Name</label> -->
-      <!-- 2-way binding, either below -->
-      <!-- <input type="text" class="form-control" required name="firstName" [ngModel]="model.firstName" (ngModelChange)="model.firstName=$event">       -->
-      <!-- <input type="text" class="form-control" required name="name" [(ngModel)]="model.firstName"> -->
-      <!-- this is used if UI value is a little different from model. e.g, Capitalize first letter for the model -->
-      <!-- <input type="text" class="form-control" required name="firstName" [ngModel]="model.firstName" (ngModelChange)="firstNameToUpperCase($event)"> -->
+    <!-- <label>First Name</label> -->
+    <!-- 2-way binding, either below -->
+    <!-- <input type="text" class="form-control" required name="firstName" [ngModel]="model.firstName" (ngModelChange)="model.firstName=$event">       -->
+    <!-- <input type="text" class="form-control" required name="name" [(ngModel)]="model.firstName"> -->
+    <!-- this is used if UI value is a little different from model. e.g, Capitalize first letter for the model -->
+    <!-- <input type="text" class="form-control" required name="firstName" [ngModel]="model.firstName" (ngModelChange)="firstNameToUpperCase($event)"> -->
     <!-- </div> -->
     <div class="form-group">
       <label>Last Name</label>
@@ -56,22 +57,27 @@
         </option>
       </select>
     </div>
-    <button class="btn btn-primary" type="submit" [disabled]="form.invalid || primaryLanguage.value==='default'">Ok</button>
+    <button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid || primaryLanguage.value==='default'">Ok</button>
 
   </form>
+
+  <h3>Data binding</h3>
+  <p>Model: {{ model | json }}</p>
+  <br>
+  <p>Angular: {{ employeeForm.value | json }}</p>
+
+  <h3>Form property</h3>
+
+  <h4>Value Changed</h4>
+  <p>form.pristine（从未填写过数据，可能 focus 但就是没写过数据）: {{ employeeForm.pristine }}</p>
+  <p>form.dirty: {{ employeeForm.dirty }}</p>
+
+  <h4>Visited</h4>
+  <p>form.touched（鼠标曾经 focus 过，在 blur 时候为 true）: {{ employeeForm.touched }}</p>
+  <p>form.untouched: {{ employeeForm.untouched }}</p>
+
+  <h4>Validity</h4>
+  <p>form.valid（required 等通过）: {{ employeeForm.valid }}</p>
+  <p>form.invalid: {{ employeeForm.invalid }}</p>
+  <p>firstName.errors: {{ firstName.errors | json }}</p>
 </div>
-
-<h3>Data binding</h3>
-<p>Model: {{ model | json }}</p>
-<br>
-<p>Angular: {{ form.value | json }}</p>
-
-<h3>Form property</h3>
-<p>form.pristine（从未填写过数据，可能 focus 但就是没写过数据）: {{ form.pristine }}</p>
-<p>form.dirty: {{ form.dirty }}</p>
-<hr>
-<p>form.touched（鼠标曾经 focus 过，在 blur 时候为 true）: {{ form.touched }}</p>
-<p>form.untouched: {{ form.untouched }}</p>
-<hr>
-<p>form.valid（required 等通过）: {{ form.valid }}</p>
-<p>form.invalid: {{ form.invalid }}</p>

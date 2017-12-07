@@ -1,9 +1,11 @@
-# Form validation
+# Template-driven Form validation
 
 component:
 
 ```ts
 import { Component, OnInit } from '@angular/core';
+
+import { NgForm } from '@angular/forms';
 
 import { Employee } from './../models/employ';
 
@@ -33,6 +35,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  save(employeeForm: NgForm) {
+    //post request
+    console.log(employeeForm);
+    console.log('saved: ' + JSON.stringify(employeeForm.value));
+  }
+
   ngOnInit() {}
 }
 ```
@@ -42,14 +50,15 @@ export class HomeComponent implements OnInit {
 ### input validation
 
 ```html
-<form #form="ngForm" novalidate>
+<form #employeeForm="ngForm" novalidate (ngSubmit)="save(employeeForm)">
 
   <!-- <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched"> -->
-  <div class="form-group" [ngClass]="{'has-error': firstName.invalid && firstName.touched}">
+  <div class="form-group" [ngClass]="{'has-error': firstName.invalid && (firstName.touched || firstName.dirty)}">
     <label class="control-label">First Name</label>
-    <input #firstName="ngModel" pattern="...+" required type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName">
-    <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger">
-      First Name is required, and must be at least 3 characters.
+    <input #firstName="ngModel" pattern="...+"  required type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName">
+    <div *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)" class="alert alert-danger">
+      <span *ngIf="firstName.errors.required">First Name is required</span>
+      <span *ngIf="firstName.errors.pattern">and must be at least 3 characters.</span>
     </div>
   </div>
 </form>
@@ -63,7 +72,7 @@ We will get an error in following cases:
 1. Changing back to default
 
 ```html
-<form #form="ngForm" novalidate>
+<form #employeeForm="ngForm" novalidate (ngSubmit)="save(employeeForm)">
 
   <!-- <div class="form-group" [class.has-error]="hasPrimaryLanguageError"> -->
   <div class="form-group" [ngClass]="{'has-error': hasPrimaryLanguageError}">
@@ -82,7 +91,7 @@ We will get an error in following cases:
 ## Form submit level
 
 ```html
-<button class="btn btn-primary" type="submit" [disabled]="form.invalid">Ok</button>
+<button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid">Ok</button>
 ```
 
 User types first name and last name, then he directly clicks "submit" without touching select control, we should also validate this in submit level.
@@ -90,5 +99,5 @@ User types first name and last name, then he directly clicks "submit" without to
 So only when select control have values other than "default", its form validation can be passed.
 
 ```html
-<button class="btn btn-primary" type="submit" [disabled]="form.invalid || primaryLanguage.value==='default'">Ok</button>
+<button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid || primaryLanguage.value==='default'">Ok</button>
 ```

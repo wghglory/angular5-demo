@@ -1,5 +1,18 @@
 # Form
 
+* Template-driven (FormsModule)
+  * ngForm
+  * ngModel (2-way binding)
+  * ngModelGroup
+* Reactive (ReactiveFormsModule)
+  * formGroup
+  * formControl
+  * formControlName
+  * formGroupName
+  * formArrayName
+
+## Template-driven Form Code
+
 1. `ng g c home` to create HomeComponent
 1. update `app-routing.module.ts`
 
@@ -27,7 +40,7 @@
     ```html
     <div class="container">
       <h3>Angular 5 Forms</h3>
-      <form #form="ngForm" novalidate>
+      <form #employeeForm="ngForm" novalidate (ngSubmit)="save(employeeForm)">
         <div class="form-group">
           <label>First Name</label>
           <!-- <input type="text" required name="name" [(ngModel)]="name"> -->
@@ -73,12 +86,23 @@
       </form>
     </div>
 
-    <p>form.pristine（从未填写过数据，可能 focus 但就是没写过数据）: {{ form.pristine }}</p>
-    <p>form.dirty: {{ form.dirty }}</p>
-    <hr>
-    <p>form.touched（鼠标曾经 focus 过，在 blur 时候为 true）: {{ form.touched }}</p>
-    <p>form.untouched: {{ form.untouched }}</p>
-    <hr>
-    <p>form.valid（required 等通过）: {{ form.valid }}</p>
-    <p>form.invalid: {{ form.invalid }}</p>
+    <h3>Data binding</h3>
+    <p>Model: {{ model | json }}</p>
+    <br>
+    <p>Angular: {{ employeeForm.value | json }}</p>
+
+    <h3>Form property</h3>
+
+    <h4>Value Changed</h4>
+    <p>form.pristine（从未填写过数据，可能 focus 但就是没写过数据）: {{ employeeForm.pristine }}</p>
+    <p>form.dirty: {{ employeeForm.dirty }}</p>
+
+    <h4>Visited</h4>
+    <p>form.touched（鼠标曾经 focus 过，在 blur 时候为 true）: {{ employeeForm.touched }}</p>
+    <p>form.untouched: {{ employeeForm.untouched }}</p>
+
+    <h4>Validity</h4>
+    <p>form.valid（required 等通过）: {{ employeeForm.valid }}</p>
+    <p>form.invalid: {{ employeeForm.invalid }}</p>
+    <p>firstName.errors: {{ firstName.errors | json }}</p>
     ```
