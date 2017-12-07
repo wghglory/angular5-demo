@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { NgForm } from '@angular/forms';
 
-import { Employee } from './../models/employ';
+import { Employee } from './../models/employee';
 
 @Component({
   selector: 'app-home',
