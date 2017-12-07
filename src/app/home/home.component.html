@@ -3,12 +3,18 @@
   <form #form="ngForm" novalidate>
     <div class="form-group">
       <label>First Name</label>
-      <!-- <input type="text" required name="name" [(ngModel)]="name"> -->
-      <input type="text" class="form-control" required name="firstName" ngModel>
+      <!-- 2-way binding, either below -->
+      <!-- <input type="text" class="form-control" required name="firstName" [ngModel]="model.firstName" (ngModelChange)="model.firstName=$event">       -->
+      <!-- <input type="text" class="form-control" required name="name" [(ngModel)]="model.firstName"> -->
+      <!-- this is used if UI value is a little different from model. e.g, Capitalize first letter for the model -->
+      <input type="text" class="form-control" required name="firstName" [ngModel]="model.firstName" (ngModelChange)="firstNameToUpperCase($event)">
     </div>
     <div class="form-group">
       <label>Last Name</label>
-      <input type="text" class="form-control" required name="lastName" ngModel>
+      <!-- no binding -->
+      <!-- <input type="text" class="form-control" required name="lastName" ngModel> -->
+      <!-- one way binding(model to UI) -->
+      <input type="text" class="form-control" required name="lastName" [ngModel]="model.lastName">
     </div>
 
     <div class="checkbox">
@@ -47,6 +53,12 @@
   </form>
 </div>
 
+<h3>Data binding</h3>
+<p>Model: {{ model | json }}</p>
+<br>
+<p>Angular: {{ form.value | json }}</p>
+
+<h3>Form property</h3>
 <p>form.pristine（从未填写过数据，可能 focus 但就是没写过数据）: {{ form.pristine }}</p>
 <p>form.dirty: {{ form.dirty }}</p>
 <hr>
