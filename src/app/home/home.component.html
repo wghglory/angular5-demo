@@ -1,9 +1,18 @@
-<h3>Angular 5 Forms</h3>
-<form #form="ngForm" novalidate>
-    <input type="text" required name="name" [(ngModel)]="name">
-    <!-- <input type="text" required name="name" ngModel> -->
-    <button type="submit">Ok</button>
-</form>
+<div class="container">
+  <h3>Angular 5 Forms</h3>
+  <form #form="ngForm" novalidate>
+    <div class="form-group">
+      <label>First Name</label>
+      <!-- <input type="text" required name="name" [(ngModel)]="name"> -->
+      <input type="text" class="form-control" required name="firstName" ngModel>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <input type="text" class="form-control" required name="lastName" ngModel>
+    </div>
+    <button class="btn btn-primary" type="submit">Ok</button>
+  </form>
+</div>
 
 <p>form.pristine（从未填写过数据，可能 focus 但就是没写过数据）: {{ form.pristine }}</p>
 <p>form.dirty: {{ form.dirty }}</p>

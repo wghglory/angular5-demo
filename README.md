@@ -8,6 +8,11 @@ ng new angular5-demo --routing --style scss
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.0.
 
+## Contents
+
+1. [form basics](./docs/form.md)
+1. [use bootstrap](./docs/bootstrap.md)
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
