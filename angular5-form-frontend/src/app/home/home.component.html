@@ -1,11 +1,13 @@
-<div class="container">
+<h3 *ngIf="languages.length === 0">Loading...</h3>
+<!-- async pipe is another option to handle request loading -->
+<div class="container" *ngIf="languages.length > 0">
   <h3>Angular 5 Forms</h3>
-  <form #employeeForm="ngForm" novalidate (ngSubmit)="save(employeeForm)">
+  <form #employeeForm="ngForm" novalidate (ngSubmit)="submitForm(employeeForm)">
 
     <!-- <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched"> -->
     <div class="form-group" [ngClass]="{'has-error': firstName.invalid && (firstName.touched || firstName.dirty)}">
       <label class="control-label">First Name</label>
-      <input #firstName="ngModel" pattern="...+"  required type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName">
+      <input #firstName="ngModel" pattern="...+" required type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName">
       <div *ngIf="firstName.invalid && (firstName.touched || firstName.dirty)" class="alert alert-danger">
         <span *ngIf="firstName.errors.required">First Name is required</span>
         <span *ngIf="firstName.errors.pattern">and must be at least 3 characters.</span>
@@ -25,7 +27,10 @@
       <!-- no binding -->
       <!-- <input type="text" class="form-control" required name="lastName" ngModel> -->
       <!-- one way binding(model to UI) -->
-      <input type="text" class="form-control" required name="lastName" [ngModel]="model.lastName">
+      <!-- <input type="text" class="form-control" required name="lastName" [ngModel]="model.lastName"> -->
+
+      <!-- 2 way binding -->
+      <input type="text" class="form-control" required name="lastName" [(ngModel)]="model.lastName">
     </div>
 
     <div class="checkbox">
